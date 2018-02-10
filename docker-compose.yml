@@ -1,0 +1,26 @@
+version: '2'
+services:
+  signalk:
+    image: "tkurki/signalk-server"
+    environment:
+     - EXTERNALHOST=raspberrypi.local
+     - EXTERNALPORT=80
+    ports:
+     - "80:3000"
+     - "10110:10110"
+     - "3858:3858"
+    volumes:
+     - "./dotsignalk:/root/.signalk"
+     - "./data/signalk-log:/signalk-log"
+    restart: always
+    privileged: true
+  influxdb:
+    image: "arm32v7/influxdb:1.4"
+    ports:
+     - "8086:8086"
+    volumes:
+     - "./data:/data"
+  grafana:
+    image: "fg2it/grafana-armhf:v4.1.2"
+    ports:
+     - "3001:3000"

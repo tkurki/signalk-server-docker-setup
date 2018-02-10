@@ -1,0 +1,4 @@
+.docker-compose.yml.swp
+dotsignalk/defaults.json
+dotsignalk/node_modules/
+dotsignalk/package-lock.json
